@@ -51,9 +51,9 @@ const todosSlice = createSlice({
                 state.todos.push(action.payload)
             })
             .addCase(updateTodo.fulfilled, (state, action) => {
-                let currentTodo = state.todos.find((todo) => todo.id === action.payload)
+                let currentTodo = state.todos.find((todo) => todo.id === action.payload.id)
                 // eslint-disable-next-line no-unused-vars
-                currentTodo = action.payload
+                currentTodo.completed = action.payload.completed
             })
     }
 })
@@ -70,7 +70,6 @@ export const addNewTodo = createAsyncThunk('todos/addNewTodo', async (newTodo) =
         body: JSON.stringify(newTodo)
     })
     const data = await res.json()
-    console.log({ data });
     return data.todos
 })
 
@@ -81,7 +80,6 @@ export const updateTodo = createAsyncThunk('todos/updateTodo', async (updatedTod
     })
 
     const data = await res.json()
-    console.log(data);
     return data.todos
 })
 
