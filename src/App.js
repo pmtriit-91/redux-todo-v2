@@ -9,7 +9,6 @@ import { fetchTodos } from './components/TodoList/todosSlice';
 
 if (process.env.NODE_ENV === 'development') {
   setupServer()
-  console.log('abc');
 }
 
 const { Title } = Typography;
